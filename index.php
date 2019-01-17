@@ -1,63 +1,52 @@
 <?php
 session_start();
-if (isset($_SESSION['admin']) || isset($_SESSION['user'])  ) {
-   header('location:home.php');
+if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
+    header('location:home.php');
 }
 ?>
 
 <?php
 function LoginSystem()
 {
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-include "connection.php";
-$email = mysqli_real_escape_string($connection , stripslashes($_REQUEST['email']));
-$pass = mysqli_real_escape_string($connection ,stripslashes($_REQUEST['pass']));
-$encpass = password_hash($pass , PASSWORD_DEFAULT);
-$fetch_dataold = " SELECT pass FROM users WHERE email = '$email' LIMIT 1 " ;
-$fetch_resultold = $connection->query($fetch_dataold);
-   if ($fetch_resultold->num_rows > 0)
- {
-   while ($fetch_rowold = $fetch_resultold->fetch_assoc())
- {
-     $passnewfetchold = $fetch_rowold['pass'];
-if (password_verify( $pass , $passnewfetchold)) {
-$sql =  " SELECT email AND pass FROM `users` WHERE email = '$email' AND pass = '$passnewfetchold'";
-$result = mysqli_query($connection , $sql);
-$row = mysqli_num_rows($result);
-if( $row == 1 )
-{
-   $fetch_data = " SELECT type FROM users WHERE email = '$email' AND pass = '$passnewfetchold'" ;
-   $fetch_result = $connection->query($fetch_data);
-   if ($fetch_result->num_rows > 0)
- {
-   while ($fetch_row = $fetch_result->fetch_assoc())
- {
-         $fetch_type = $fetch_row['type'];
-         if ($fetch_type == '1')
-         {
-      $_SESSION['admin'] = $email;
-      header('location:home.php');
-       }
-       elseif($fetch_type == '0')
-       {
-       $_SESSION['user'] = $email;
-       header('location:home.php');
-       }
-}
-}
-}
-}
-else {
-echo "<span style='color:red'>Invalid Username or Password.</span>";
-}
-}
-}
-else {
-echo "<span style='color:red'>Invalid Username or Password.</span>";
-}
-$connection->close();
-}
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        include "connection.php";
+        $email = mysqli_real_escape_string($connection, stripslashes($_REQUEST['email']));
+        $pass = mysqli_real_escape_string($connection, stripslashes($_REQUEST['pass']));
+        $encpass = password_hash($pass, PASSWORD_DEFAULT);
+        $fetch_dataold = " SELECT pass FROM users WHERE email = '$email' LIMIT 1 " ;
+        $fetch_resultold = $connection->query($fetch_dataold);
+        if ($fetch_resultold->num_rows > 0) {
+            while ($fetch_rowold = $fetch_resultold->fetch_assoc()) {
+                $passnewfetchold = $fetch_rowold['pass'];
+                if (password_verify($pass, $passnewfetchold)) {
+                    $sql =  " SELECT email AND pass FROM `users` WHERE email = '$email' AND pass = '$passnewfetchold'";
+                    $result = mysqli_query($connection, $sql);
+                    $row = mysqli_num_rows($result);
+                    if ($row == 1) {
+                        $fetch_data = " SELECT type FROM users WHERE email = '$email' AND pass = '$passnewfetchold'" ;
+                        $fetch_result = $connection->query($fetch_data);
+                        if ($fetch_result->num_rows > 0) {
+                            while ($fetch_row = $fetch_result->fetch_assoc()) {
+                                $fetch_type = $fetch_row['type'];
+                                if ($fetch_type == '1') {
+                                    $_SESSION['admin'] = $email;
+                                    header('location:home.php');
+                                } elseif ($fetch_type == '0') {
+                                    $_SESSION['user'] = $email;
+                                    header('location:home.php');
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    echo "<span style='color:red'>Invalid Username or Password.</span>";
+                }
+            }
+        } else {
+            echo "<span style='color:red'>Invalid Username or Password.</span>";
+        }
+        $connection->close();
+    }
 }
 LoginSystem();
 ?>

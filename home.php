@@ -43,13 +43,10 @@
 
     <div class="col-12 text-center text-white align-self-center mt-5">
     <h1><?php
-           if(isset($_SESSION['admin']))
-           {
-             echo "WELCOME ADMIN";
-           }
-           else
-           {
-             echo "WELCOME USER";
+           if (isset($_SESSION['admin'])) {
+               echo "WELCOME ADMIN";
+           } else {
+               echo "WELCOME USER";
            }
        ?></h1>
     </div>

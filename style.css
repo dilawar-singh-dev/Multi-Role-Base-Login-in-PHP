@@ -1,16 +1,17 @@
 :root {
   --input-padding-x: 1.5rem;
-  --input-padding-y: .75rem;
+  --input-padding-y: 0.75rem;
 }
-html,body{
-  height: 100%
+html,
+body {
+  height: 100%;
 }
 body {
-  background: #9CECFB;
+  background: #9cecfb;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+  background: -webkit-linear-gradient(to right, #0052d4, #65c7f7, #9cecfb);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+  background: linear-gradient(to right, #0052d4, #65c7f7, #9cecfb);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -19,7 +20,7 @@ body {
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
- 
+
 .card-signin .card-title {
   margin-bottom: 2rem;
   font-weight: 300;
@@ -37,7 +38,7 @@ body {
 .form-signin .btn {
   font-size: 80%;
   border-radius: 5rem;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   font-weight: bold;
   padding: 1rem;
   transition: all 0.2s;
@@ -53,12 +54,12 @@ body {
   border-radius: 2rem;
 }
 
-.form-label-group>input,
-.form-label-group>label {
+.form-label-group > input,
+.form-label-group > label {
   padding: var(--input-padding-y) var(--input-padding-x);
 }
 
-.form-label-group>label {
+.form-label-group > label {
   position: absolute;
   top: 0;
   left: 0;
@@ -69,8 +70,8 @@ body {
   line-height: 1.5;
   color: #495057;
   border: 1px solid transparent;
-  border-radius: .25rem;
-  transition: all .1s ease-in-out;
+  border-radius: 0.25rem;
+  transition: all 0.1s ease-in-out;
 }
 
 .form-label-group input::-webkit-input-placeholder {
@@ -98,7 +99,7 @@ body {
   padding-bottom: calc(var(--input-padding-y) / 3);
 }
 
-.form-label-group input~label {
+.form-label-group input ~ label {
   padding-top: calc(var(--input-padding-y) / 3);
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 12px;
