@@ -1,9 +1,13 @@
 # Multi-Role-Base-Login-in-PHP
 
-////////////Admin Login////////////
+Admin Login
+
 Username = admin@gmail.com
+
 Pass = admin746#
 
-////////////User Login////////////
+User Login
+
 Username = user@gmail.com
+
 Pass = admin746#
